@@ -7,7 +7,7 @@ import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelOut
 
 public class JobMapper {
 
-    JobModelOut jobEntityToModelOut(JobEntity job) {
+    public JobModelOut jobEntityToModelOut(JobEntity job) {
         return JobModelOut.build()
                 .end(job.getEnd())
                 .name(job.getNome())

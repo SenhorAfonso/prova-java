@@ -21,8 +21,8 @@ public class UserPersistenceAdapter implements UserPersistenceOutputPort {
 
     @Autowired
     public UserPersistenceAdapter(
-            UserEntityRepository userRepository,
-            UserMapper userMapper
+        UserEntityRepository userRepository,
+        UserMapper userMapper
     ) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;

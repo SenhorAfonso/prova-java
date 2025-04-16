@@ -17,8 +17,8 @@ public class JobPersistenceAdapter implements JobPersistenceOutputPort {
 
     @Autowired
     public JobPersistenceAdapter (
-            JobEntityRepository jobRepository,
-            JobMapper jobMapper
+        JobEntityRepository jobRepository,
+        JobMapper jobMapper
     ) {
         this.jobMapper = jobMapper;
         this.jobRepository = jobRepository;
@@ -29,6 +29,6 @@ public class JobPersistenceAdapter implements JobPersistenceOutputPort {
         JobEntity entity = JobEntity.builder().end(newJob.end()).nome(newJob.name()).build();
         JobEntity job = this.jobRepository.save(entity);
 
-        return this.jobMapper.jobEntityToModelOut()
+        return this.jobMapper.jobEntityToModelOut(entity);
     }
 }
