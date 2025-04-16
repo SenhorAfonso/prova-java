@@ -1,10 +1,7 @@
 package com.sirafonso.metting_room_reservation.core.port.out;
 
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelIn;
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelOut;
-import com.sirafonso.metting_room_reservation.core.domain.models.UserModel;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelIn;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelOut;
 
 import java.util.List;
 import java.util.UUID;

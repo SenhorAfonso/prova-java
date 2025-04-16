@@ -1,9 +1,8 @@
 package com.sirafonso.metting_room_reservation.core.usecase.users;
 
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelOut;
-import com.sirafonso.metting_room_reservation.core.port.in.FindAllUsersInputPort;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelOut;
+import com.sirafonso.metting_room_reservation.core.port.in.users.FindAllUsersInputPort;
 import com.sirafonso.metting_room_reservation.core.port.out.UserPersistenceOutputPort;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 

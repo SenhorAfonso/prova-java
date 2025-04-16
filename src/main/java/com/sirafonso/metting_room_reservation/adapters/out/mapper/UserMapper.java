@@ -1,8 +1,7 @@
 package com.sirafonso.metting_room_reservation.adapters.out.mapper;
 
 import com.sirafonso.metting_room_reservation.adapters.out.repository.entities.UserEntity;
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelOut;
-import com.sirafonso.metting_room_reservation.core.domain.models.UserModel;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelOut;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,10 +12,8 @@ public class UserMapper {
 
         return UserModelOut.build()
                 .id(userEntity.getId())
-                .name(userEntity.getName())
-                .username(userEntity.getUsername())
-                .email(userEntity.getEmail())
-                .password(userEntity.getPassword())
+                .cpf(userEntity.getCpf())
+                .age(userEntity.getAge())
                 .build();
 
     }

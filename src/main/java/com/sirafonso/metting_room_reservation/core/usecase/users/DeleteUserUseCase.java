@@ -1,6 +1,6 @@
 package com.sirafonso.metting_room_reservation.core.usecase.users;
 
-import com.sirafonso.metting_room_reservation.core.port.in.DeleteUserInputPort;
+import com.sirafonso.metting_room_reservation.core.port.in.users.DeleteUserInputPort;
 import com.sirafonso.metting_room_reservation.core.port.out.UserPersistenceOutputPort;
 
 import java.util.UUID;

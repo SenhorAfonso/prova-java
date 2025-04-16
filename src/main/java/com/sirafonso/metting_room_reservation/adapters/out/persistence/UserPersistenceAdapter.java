@@ -3,18 +3,14 @@ package com.sirafonso.metting_room_reservation.adapters.out.persistence;
 import com.sirafonso.metting_room_reservation.adapters.out.mapper.UserMapper;
 import com.sirafonso.metting_room_reservation.adapters.out.repository.UserEntityRepository;
 import com.sirafonso.metting_room_reservation.adapters.out.repository.entities.UserEntity;
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelIn;
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelOut;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelIn;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelOut;
 import com.sirafonso.metting_room_reservation.core.domain.exception.ResourceNotFoundException;
-import com.sirafonso.metting_room_reservation.core.domain.models.UserModel;
 import com.sirafonso.metting_room_reservation.core.port.out.UserPersistenceOutputPort;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -36,10 +32,8 @@ public class UserPersistenceAdapter implements UserPersistenceOutputPort {
     @Override
     public UserModelOut saveUser(UserModelIn newUser) {
         UserEntity userEntity = UserEntity.builder()
-                .name(newUser.name())
-                .username(newUser.username())
-                .email(newUser.email())
-                .password(newUser.password())
+                .cpf(newUser.cpf())
+                .age(newUser.age())
                 .build();
 
         UserEntity savedUser = this.userRepository.save(userEntity);
@@ -51,12 +45,10 @@ public class UserPersistenceAdapter implements UserPersistenceOutputPort {
 
         UserEntity updatedUser = this.userRepository.findById(userId)
             .map(user -> {
-                user.setName(newUserData.name());
-                user.setUsername(newUserData.username());
-                user.setEmail(newUserData.email());
-                user.setPassword(newUserData.password());
+                user.setCpf(newUserData.cpf());
+                user.setAge(newUserData.age());
                 return this.userRepository.save(user);
-            }).orElseThrow(() -> new RuntimeException("TODO: Usuário não encontrado"));
+            }).orElseThrow(() -> new RuntimeException("User not found"));
 
         return this.userMapper.userEntityToUserModelOut(updatedUser);
     }
@@ -77,6 +69,9 @@ public class UserPersistenceAdapter implements UserPersistenceOutputPort {
 
     @Override
     public UserModelOut findUserById(UUID userId) {
-        return null;
+        UserEntity user = this.userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found", "Users.userNotFound"));
+
+        return this.userMapper.userEntityToUserModelOut(user);
     }
 }

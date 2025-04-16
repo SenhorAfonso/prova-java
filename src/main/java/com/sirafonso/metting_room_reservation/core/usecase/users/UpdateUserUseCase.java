@@ -1,9 +1,8 @@
 package com.sirafonso.metting_room_reservation.core.usecase.users;
 
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelIn;
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelOut;
-import com.sirafonso.metting_room_reservation.core.domain.models.UserModel;
-import com.sirafonso.metting_room_reservation.core.port.in.UpdateUserInputPort;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelIn;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelOut;
+import com.sirafonso.metting_room_reservation.core.port.in.users.UpdateUserInputPort;
 import com.sirafonso.metting_room_reservation.core.port.out.UserPersistenceOutputPort;
 
 import java.util.UUID;

@@ -1,16 +1,10 @@
 package com.sirafonso.metting_room_reservation.adapters.in.web.controllers;
 
-import com.sirafonso.metting_room_reservation.adapters.in.web.controllers.dto.request.CreateUserRequest;
-import com.sirafonso.metting_room_reservation.adapters.in.web.controllers.dto.request.UpdateUserRequest;
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelIn;
-import com.sirafonso.metting_room_reservation.core.domain.dto.UserModelOut;
-import com.sirafonso.metting_room_reservation.core.port.in.DeleteUserInputPort;
-import com.sirafonso.metting_room_reservation.core.port.in.FindAllUsersInputPort;
-import com.sirafonso.metting_room_reservation.core.port.in.SaveUserInputPort;
-import com.sirafonso.metting_room_reservation.core.port.in.UpdateUserInputPort;
+import com.sirafonso.metting_room_reservation.adapters.in.web.controllers.dto.request.users.CreateUserRequest;
+import com.sirafonso.metting_room_reservation.adapters.in.web.controllers.dto.request.users.UpdateUserRequest;
+import com.sirafonso.metting_room_reservation.core.domain.dto.users.UserModelOut;
+import com.sirafonso.metting_room_reservation.core.port.in.users.*;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,17 +18,20 @@ public class UsersController {
     private final FindAllUsersInputPort findAllUsersUseCase;
     private final UpdateUserInputPort updateUserUseCase;
     private final DeleteUserInputPort deleteUserUseCase;
+    private final FindUserByIdInputPort findUserByIdUseCase;
 
     public UsersController(
             SaveUserInputPort saveUserUseCase,
             FindAllUsersInputPort findAllUsersUseCase,
             UpdateUserInputPort updateUserUseCase,
-            DeleteUserInputPort deleteUserUseCase
+            DeleteUserInputPort deleteUserUseCase,
+            FindUserByIdInputPort findUserByIdUseCase
     ) {
         this.saveUserUseCase = saveUserUseCase;
         this.findAllUsersUseCase = findAllUsersUseCase;
         this.updateUserUseCase = updateUserUseCase;
         this.deleteUserUseCase = deleteUserUseCase;
+        this.findUserByIdUseCase = findUserByIdUseCase;
     }
 
     @PostMapping
@@ -45,6 +42,11 @@ public class UsersController {
     @GetMapping
     List<UserModelOut> findAllUsers() {
         return this.findAllUsersUseCase.execute();
+    }
+
+    @GetMapping("/{userId}")
+    UserModelOut getUserById(@PathVariable UUID userId) {
+        return this.findUserByIdUseCase.execute(userId);
     }
 
     @PutMapping("/{userId}")
